@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #ball {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="ball"></div>
+    <script>
+        $(document).ready(function() {
+            let colors = ['red', 'green', 'blue'];
+            let colorIdx = 0;
+            let size = 200;
+            let maxSize = 420;
+            let minSize = 200;
+            let sizeIncrement = 10;
+
+            function increaseSize() {
+                if (size < maxSize) {
+                    size += sizeIncrement;
+                    $('#ball').css({
+                        width: size + 'px',
+                        height: size + 'px'
+                    });
+                }
+            }
+
+            function resetBalloon() {
+                size = minSize;
+                $('#ball').css({
+                    width: size + 'px',
+                    height: size + 'px',
+                    backgroundColor: colors[0]
+                });
+                colorIdx = 0;
+            }
+
+            function changeColor() {
+                colorIdx = (colorIdx + 1) % colors.length;
+                $('#ball').css('background-color', colors[colorIdx]);
+            }
+
+            function previousColor() {
+                colorIdx = (colorIdx - 1 + colors.length) % colors.length;
+                $('#ball').css('background-color', colors[colorIdx]);
+            }
+
+            $('#ball').click(function() {
+                if (size >= minSize && size < maxSize) {
+                    increaseSize();
+                    changeColor();
+                } else {
+                    resetBalloon();
+                }
+            });
+
+            $('#ball').mouseleave(function() {
+                if (size > minSize) {
+                    size -= 5;
+                    $('#ball').css({
+                        width: size + 'px',
+                        height: size + 'px'
+                    });
+                    previousColor();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

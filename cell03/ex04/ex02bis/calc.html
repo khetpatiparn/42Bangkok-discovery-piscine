@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1 style="color: green;">Beautiful Calculator</h1>
+    <form id="calcForm">
+        <label for="leftNum">Left Number :</label>
+        <input type="number" name="leftNum" id="leftNum" required>
+
+        <label for="operator">Operator: </label>
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+
+        <label for="rightNum">Right Number :</label>
+        <input type="number" name="rightNum" id="rightNum" required>
+
+        <input type="submit" value="Try me!">
+    </form>
+    <script>
+        $(document).ready(function() {
+            $('#calcForm').submit(function(event) {
+                event.preventDefault();
+                let lNum = parseInt($('#leftNum').val(), 10);
+                let rNum = parseInt($('#rightNum').val(), 10);
+                let operator = $('#operator').val();
+                
+                if (lNum >= 0 && rNum >= 0){
+                    let result;
+                    switch (operator) {
+                        case '+':
+                            result = lNum + rNum;
+                            break;
+                        case '-':
+                            result = lNum - rNum;
+                            break;
+                        case '*':
+                            result = lNum * rNum;
+                            break;
+                        case '/':
+                            if (rNum == 0){
+                                alert("It’s over 9000!");
+                                console.log("It’s over 9000!");
+                                return;
+                            }
+                            result = lNum / rNum;
+                            break;
+                        case '%':
+                            if (rNum == 0){
+                                alert("It’s over 9000!");
+                                console.log("It’s over 9000!");
+                                return;
+                            }
+                            result = lNum % rNum;
+                            break;
+                        default:
+                            result = "Invalid operator";
+                    }
+            
+                    alert(result);
+                    console.log(result);
+
+                }else{
+                    alert("Error :(");
+                }
+            });
+
+            setInterval(function() {
+                    alert('Please, use me...');
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

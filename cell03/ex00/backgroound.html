@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="background.css">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn" onclick="myFunction()" type="button">Click Me!</button>
+    <script>
+        function myFunction() {
+            let randColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            document.body.style.backgroundColor = randColor;
+        }
+    </script>
+</body>
+</html>
